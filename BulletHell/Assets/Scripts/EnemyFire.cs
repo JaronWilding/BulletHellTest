@@ -9,6 +9,7 @@ public class EnemyFire : MonoBehaviour
     [SerializeField] private GameObject bulletParent = null;
     [SerializeField] private float fireDelay = 0.2f;
     [SerializeField] private float bulletSpeed = 20f;
+    [SerializeField] private int fireAmount = 2;
     [SerializeField] private int pooledAmount = 20;
     [SerializeField] private bool dynamicList = true;
     private List<GameObject> bullets;
@@ -25,13 +26,6 @@ public class EnemyFire : MonoBehaviour
         }
         StartCoroutine(ForceFiring(fireDelay));
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator ForceFiring(float waitTime)
     {
         while (true)
@@ -43,15 +37,29 @@ public class EnemyFire : MonoBehaviour
 
     public void Fire()
     {
-        GameObject obj = pooledObjects();
+        for(int i = 0; i < fireAmount; i++)
+        {
+            GameObject obj = pooledObjects();
+            if (obj == null) break;
+            float direction = (i % 2 == 1) ? 1f : -1f;
 
-        if (obj == null) return;
+            FireBullet(obj, firePoint, direction);
+        }
+        
 
-        obj.transform.position = firePoint.position;
-        obj.transform.rotation = firePoint.rotation;
-        obj.SetActive(true);
-        obj.GetComponent<Rigidbody2D>().velocity = -transform.up * bulletSpeed;
+    }
 
+    private void FireBullet(GameObject bullet, Transform firePosition, float direction)
+    {
+        bullet.transform.position = firePosition.position;
+        bullet.transform.rotation = firePosition.rotation;
+        Vector3 fireDir1 = firePosition.transform.up;
+        Vector3 fireDir2 = new Vector3(fireDir1.x, fireDir1.y * (180f * Mathf.Rad2Deg), fireDir1.z );
+        bullet.SetActive(true);
+        if(direction == -1f)
+            bullet.GetComponent<Rigidbody2D>().velocity = fireDir2 * bulletSpeed;
+        else
+            bullet.GetComponent<Rigidbody2D>().velocity = fireDir1 * bulletSpeed;
     }
 
     private GameObject pooledObjects()

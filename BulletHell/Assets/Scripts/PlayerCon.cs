@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class PlayerCon : MonoBehaviour
 {
+    [Header("Player Settings")]
     [SerializeField] private float speed = 2.0f;
-    //[SerializeField] private float tilt = 2.0f;
     [SerializeField] private GameObject playerSprite = null;
+    [SerializeField] private float playerHealth = 1f;
+    //[SerializeField] private float tilt = 2.0f;
+
+
     private Rigidbody2D rbd;
     private ScreenBoundary updateTransform;
     private Vector2 screenBounds;
+    private float startHealth = 0f;
 
     private void Awake()
     {
         updateTransform = new ScreenBoundary(playerSprite);
     }
-
     private void Start()
     {
         rbd = gameObject.GetComponent<Rigidbody2D>();
+        startHealth = playerHealth;
     }
 
     private void FixedUpdate()
@@ -33,14 +38,15 @@ public class PlayerCon : MonoBehaviour
         rbd.velocity = movement;
         rbd.position = updateTransform.updateTrans(rbd.position);
     }
-    private void OnTriggerEnter2D(Collider2D col)
+
+
+    public void ApplyDamage(float damage)
     {
-        if(col != null)
+        playerHealth--;
+        //healthBar.fillAmount = enemyHealth / startHealth;
+        if(playerHealth <= 0f)
         {
-            if (col.tag == "Enemy" || col.tag == "EnemyBullets")
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 }
