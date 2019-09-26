@@ -13,7 +13,7 @@ public class BulletDestroy : MonoBehaviour
     {
         //Invoke("Destroy", 2f);
     }
-    private void Destroy()
+    protected void Destroy()
     {
         gameObject.SetActive(false);
     }
@@ -24,6 +24,16 @@ public class BulletDestroy : MonoBehaviour
             Destroy();
         }
     }
+    protected virtual void OnCollisionEnter2D(Collision2D cold)
+    {
+        Collider2D col = cold.collider;
+        if(col != null && col.tag == "Enemy")
+        {
+            col.SendMessage("ApplyDamage", 5.0f);
+            Destroy();
+        }
+    }
+
     private void OnDisable()
     {
         CancelInvoke();

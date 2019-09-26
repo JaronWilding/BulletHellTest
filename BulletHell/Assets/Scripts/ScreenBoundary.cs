@@ -26,11 +26,11 @@ public class ScreenBoundary
     public bool currentPos(Vector3 pos)
     {
         bool ret = false;
-        if(pos.x < (screenBounds.x * -1 + objectWidth) || pos.x > screenBounds.x - objectWidth)
+        if(pos.x < (screenBounds.x * -1 - objectWidth) || pos.x > screenBounds.x + objectWidth)
         {
             ret = true;
         }
-        else if(pos.y < (screenBounds.y * -1 + objectWidth) || pos.y > screenBounds.y - objectWidth)
+        else if(pos.y < (screenBounds.y * -1 - objectWidth) || pos.y > screenBounds.y + objectWidth)
         {
             ret = true;
         }
