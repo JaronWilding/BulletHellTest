@@ -7,7 +7,7 @@ public class PlayerCon : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField] private float speed = 2.0f;
     [SerializeField] private GameObject playerSprite = null;
-    [SerializeField] private float playerHealth = 1f;
+    [SerializeField] private float playerHealth = 100f;
     //[SerializeField] private float tilt = 2.0f;
 
 
@@ -43,10 +43,12 @@ public class PlayerCon : MonoBehaviour
     public void ApplyDamage(float damage)
     {
         playerHealth--;
+        Debug.Log(playerHealth);
         //healthBar.fillAmount = enemyHealth / startHealth;
         if(playerHealth <= 0f)
         {
-            Destroy(gameObject);
+
+            //Destroy(gameObject);
         }
     }
 }

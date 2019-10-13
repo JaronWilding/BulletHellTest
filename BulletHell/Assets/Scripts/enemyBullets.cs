@@ -11,7 +11,7 @@ public class enemyBullets : BulletDestroy
         Collider2D col = cold.collider;
         if(col != null && col.tag == "Player")
         {
-            col.SendMessage("ApplyDamage", 5.0f);
+            col.SendMessage("ApplyDamage", 1.0f);
             Destroy();
         }
     }

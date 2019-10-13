@@ -41,7 +41,8 @@ public class EnemyFire : MonoBehaviour
         {
             GameObject obj = pooledObjects();
             if (obj == null) break;
-            float direction = (i % 2 == 1) ? 1f : -1f;
+            int direction = (i % 2 == 1) ? 1 : -1;
+
 
             FireBullet(obj, firePoint, direction);
         }
@@ -49,17 +50,15 @@ public class EnemyFire : MonoBehaviour
 
     }
 
-    private void FireBullet(GameObject bullet, Transform firePosition, float direction)
+    private void FireBullet(GameObject bullet, Transform firePosition, int direction)
     {
         bullet.transform.position = firePosition.position;
         bullet.transform.rotation = firePosition.rotation;
-        Vector3 fireDir1 = firePosition.transform.up;
-        Vector3 fireDir2 = new Vector3(fireDir1.x, fireDir1.y * (180f * Mathf.Rad2Deg), fireDir1.z );
         bullet.SetActive(true);
-        if(direction == -1f)
-            bullet.GetComponent<Rigidbody2D>().velocity = fireDir2 * bulletSpeed;
+        if(direction == -1)
+            bullet.GetComponent<Rigidbody2D>().velocity = -firePosition.transform.up * bulletSpeed;
         else
-            bullet.GetComponent<Rigidbody2D>().velocity = fireDir1 * bulletSpeed;
+            bullet.GetComponent<Rigidbody2D>().velocity = firePosition.transform.up * bulletSpeed;
     }
 
     private GameObject pooledObjects()
