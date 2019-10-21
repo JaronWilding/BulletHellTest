@@ -773,12 +773,12 @@ MonoBehaviour:
   animOffset: {x: 0, y: -2}
   animXSpeed: 1
   animYSpeed: 1
-  fireDelay: 0.05
-  bulletSpeed: 10
+  fireDelay: 0.2
+  bulletSpeed: 4
   fireAmount: 4
-  rotationSpeed: 2
+  rotationSpeed: 0.6
   extraSettings:
-    NoDeath: 1
+    NoDeath: 0
     noRotation: 0
     healthBar: {fileID: 504251833}
     enemySprite: {fileID: 40733144}
@@ -1206,9 +1206,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1830141450066020364, guid: eca8a5e6e31b3ac478e0a5f51bd3cb04,
     type: 3}
   bulletParent: {fileID: 1063633020}
-  fireDelay: 0.02
-  bulletSpeed: 20
-  pooledAmount: 20
+  fireDelay: 0.08
+  bulletSpeed: 15
+  pooledAmount: 90
   dynamicList: 0
 --- !u!1 &1838673362
 GameObject:

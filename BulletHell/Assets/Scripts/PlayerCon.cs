@@ -48,7 +48,7 @@ public class PlayerCon : MonoBehaviour
         if(playerHealth <= 0f)
         {
 
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }
