@@ -8,11 +8,22 @@ public class ScreenBoundary
     private float objectWidth;
     private float objectHeight;
 
+    public ScreenBoundary()
+    {
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+    }
+
     public ScreenBoundary(GameObject current)
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         objectWidth = current.GetComponent<SpriteRenderer>().bounds.extents.x; //extents = size of width / 2
         objectHeight = current.GetComponent<SpriteRenderer>().bounds.extents.y; //extents = size of height / 2
+    }
+
+    public Vector2 ReturnBounds()
+    {
+        
+        return screenBounds;
     }
 
     public Vector3 updateTrans(Vector3 pos)

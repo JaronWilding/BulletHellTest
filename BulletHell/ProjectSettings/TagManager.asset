@@ -15,8 +15,8 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - Enemy
   - Player
+  - Enemy
   - EnemyBullets
   - PlayerBullets
   - 
@@ -39,6 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2643929593
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ButtonBelow
+    uniqueID: 288539625
+    locked: 0
+  - name: ButtonTop
+    uniqueID: 2903558705
+    locked: 0
+  - name: Bullets
+    uniqueID: 768150959
     locked: 0

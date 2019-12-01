@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyBullets : BulletDestroy
+public class enemyBullets : Bullet
 {
     // Start is called before the first frame update
     protected override void OnCollisionEnter2D(Collision2D cold)
@@ -12,7 +12,7 @@ public class enemyBullets : BulletDestroy
         if(col != null && col.tag == "Player")
         {
             col.SendMessage("ApplyDamage", 1.0f);
-            Destroy();
+            DestroyObject();
         }
     }
 }
